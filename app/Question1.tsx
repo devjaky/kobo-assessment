@@ -12,13 +12,13 @@ import {
 import Toolbar from "@/components/Toolbar";
 import type { DisplayMode, SortMode, ToolbarAction } from "@/types/toolbar";
 import { sortByLastName } from "@/utils/sort";
-import { userUserProfiles } from "@/hooks/userUserProfiles";
+import { useUserProfiles } from "@/hooks/useUserProfiles";
 
-const USE_LOCAL_DATA = false; // Determines where data is sourced from local or api
+const USE_LOCAL_DATA = true; // Determines where data is sourced from local or api
 const USER_PROFILE_LIST = require("../assets/MOCK_DATA.json");
 
 const Question1 = () => {
-  const { profiles } = userUserProfiles();
+  const { profiles } = useUserProfiles();
   const [displayMode, setDisplayMode] = useState<DisplayMode>("list");
   const [sortMode, setSortMode] = useState<SortMode>("alphabetical");
   const [filterLargeAvatars, setFilterLargeAvatars] = useState(false);
@@ -42,7 +42,7 @@ const Question1 = () => {
     const sortedProfiles = [...filteredProfiles].sort(sortByLastName(sortMode));
 
     return sortedProfiles;
-  }, [profiles, filterLargeAvatars, sortMode, sortByLastName]);
+  }, [profiles, filterLargeAvatars, sortMode]);
 
   const handleToolbarItemPress = useCallback(
     (item: ToolbarAction) => {

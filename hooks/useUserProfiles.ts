@@ -1,5 +1,5 @@
+import type { UserProfile } from "@/types/user-profile";
 import { useEffect, useState } from "react";
-import { UserProfile } from "@/types/user-profile";
 
 // TODO: Write unit test
 
@@ -9,7 +9,7 @@ const PAGE = 1;
 const USER_PROFILES_API_URL = `https://gist.githubusercontent.com/dsandin/7b7cd2b834abd8c10908803cac5d1dd3/raw/9a8c0270e0f7a778409b2996419bacdbb06edc87/users_page${PAGE}`;
 
 // I would integrate react-query to handle caching, rehydration, errors, etc.
-export const userUserProfiles = () => {
+export const useUserProfiles = () => {
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
